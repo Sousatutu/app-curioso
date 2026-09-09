@@ -2,7 +2,43 @@
 
 Um painel leve, moderno e robusto para organização de rotinas, gestão de atividades e armazenamento de scripts/comandos de infraestrutura com cópia em um clique.
 
-Projetado para rodar em servidores locais, VMs e homelabs (Debian, Ubuntu e derivados).
+Projetado para rodar com eficiência em servidores locais, VMs, Raspberry Pi e homelabs.
+
+---
+
+## 💻 Requisitos do Sistema
+
+O sistema foi arquitetado para ser extremamente leve e econômico em consumo de recursos, rodando com folga até nas menores máquinas virtuais:
+
+### ⚙️ Hardware Mínimo Recomendado
+| Componente | Mínimo | Recomendado |
+|---|---|---|
+| **Processador (CPU)** | 1 vCPU / Core | 2 vCPUs |
+| **Memória RAM** | 512 MB *(com swap ativo no build)* | 1 GB ou superior |
+| **Armazenamento (Disco)** | 500 MB livres | 2 GB livres |
+| **Arquitetura** | `x86_64` (amd64) ou `aarch64` (ARM64) | amd64 / ARM64 |
+
+> 💡 *Nota de consumo:* Após compilado, a aplicação em execução contínua via PM2 consome apenas cerca de **70 MB a 90 MB de memória RAM**.
+
+---
+
+### 🐧 Sistema Operacional & Software
+- **Sistemas Suportados:**
+  - Debian 11, 12, 13 (ou derivados)
+  - Ubuntu 20.04, 22.04, 24.04 LTS
+  - Fedora, CentOS/Rocky Linux, Alpine, Arch Linux
+  - Raspberry Pi OS
+- **Softwares Necessários:**
+  - **Node.js:** v18.18+ ou v20+ LTS *(o script de instalação instala automaticamente se não tiver)*
+  - **npm:** v9+ *(acompanha o Node.js)*
+  - **PM2:** *(gerenciador de processos, instalado automaticamente pelo script)*
+  - **Git:** para clonar o repositório
+
+---
+
+### 🌐 Conectividade & Portas
+- **Porta 3000 TCP** aberta na máquina/firewall para acesso web local (`http://SEU_IP:3000`).
+- Conexão com a internet apenas durante a instalação inicial (para download dos pacotes npm).
 
 ---
 
@@ -38,14 +74,14 @@ Projetado para rodar em servidores locais, VMs e homelabs (Debian, Ubuntu e deri
 Clone o repositório e execute o script de instalação automatizado:
 
 ```bash
-git clone <URL_DO_SEU_REPOSITORIO> curioso
-cd curioso
+git clone https://github.com/Sousatutu/app-curioso.git
+cd app-curioso
 chmod +x setup.sh
 ./setup.sh
 ```
 
 ### O que o instalador faz sozinho:
-1. ✅ Verifica e instala automaticamente **Node.js (v20+)**, **npm** e **PM2** se necessário.
+1. ✅ Verifica e instala automaticamente **Node.js (v20 LTS)**, **npm** e **PM2** se necessário.
 2. ✅ Solicita interativamente o **usuário** e a **senha** que você deseja cadastrar.
 3. ✅ Calcula os hashes criptográficos e cria o `.env.local` protegido.
 4. ✅ Instala as dependências (`npm install`) e compila o projeto otimizado (`npm run build`).
