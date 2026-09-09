@@ -1,14 +1,14 @@
 # Curioso — Painel Pessoal & Cofre de Infraestrutura
 
-Um painel leve, moderno e robusto para organização de rotinas, gestão de atividades e armazenamento de scripts/comandos de infraestrutura com cópia em um clique.
+Um painel leve, moderno e robusto para organização de rotinas, gestão de atividades em formato **Kanban** e armazenamento de scripts/comandos de infraestrutura com cópia em um clique.
 
-Projetado para rodar com eficiência em servidores locais, VMs, Raspberry Pi e homelabs.
+Projetado para rodar com alta eficiência em **Linux** (Debian, Ubuntu, Raspberry Pi) e **Windows** (Nativo ou WSL).
 
 ---
 
 ## 💻 Requisitos do Sistema
 
-O sistema foi arquitetado para ser extremamente leve e econômico em consumo de recursos, rodando com folga até nas menores máquinas virtuais:
+O sistema foi arquitetado para ser extremamente leve e econômico em consumo de recursos:
 
 ### ⚙️ Hardware Mínimo Recomendado
 | Componente | Mínimo | Recomendado |
@@ -18,60 +18,51 @@ O sistema foi arquitetado para ser extremamente leve e econômico em consumo de 
 | **Armazenamento (Disco)** | 500 MB livres | 2 GB livres |
 | **Arquitetura** | `x86_64` (amd64) ou `aarch64` (ARM64) | amd64 / ARM64 |
 
-> 💡 *Nota de consumo:* Após compilado, a aplicação em execução contínua via PM2 consome apenas cerca de **70 MB a 90 MB de memória RAM**.
+> 💡 *Nota de consumo:* Após compilado, a aplicação em execução contínua consome apenas cerca de **70 MB a 90 MB de memória RAM**.
 
 ---
 
-### 🐧 Sistema Operacional & Software
-- **Sistemas Suportados:**
-  - Debian 11, 12, 13 (ou derivados)
-  - Ubuntu 20.04, 22.04, 24.04 LTS
-  - Fedora, CentOS/Rocky Linux, Alpine, Arch Linux
-  - Raspberry Pi OS
+### 🖥️ Sistemas Operacionais Suportados
+- **Linux:** Debian 11/12/13, Ubuntu 20.04/22.04/24.04, Fedora, Rocky Linux, Alpine, Raspberry Pi OS.
+- **Windows:** Windows 10, Windows 11, Windows Server 2019/2022 *(suporte nativo via PowerShell ou WSL2)*.
 - **Softwares Necessários:**
-  - **Node.js:** v18.18+ ou v20+ LTS *(o script de instalação instala automaticamente se não tiver)*
-  - **npm:** v9+ *(acompanha o Node.js)*
-  - **PM2:** *(gerenciador de processos, instalado automaticamente pelo script)*
-  - **Git:** para clonar o repositório
-
----
-
-### 🌐 Conectividade & Portas
-- **Porta 3000 TCP** aberta na máquina/firewall para acesso web local (`http://SEU_IP:3000`).
-- Conexão com a internet apenas durante a instalação inicial (para download dos pacotes npm).
+  - **Node.js:** v18.18+ ou v20+ LTS
+  - **npm:** v9+
+  - **PM2:** *(em ambientes Linux para daemon em segundo plano)*
 
 ---
 
 ## 🚀 Funcionalidades
 
-- **📋 Gestão de Tarefas (CRUD):** 
-  - Criação rápida com carimbo de data e hora.
-  - Edição inline sem recarregar a tela.
-  - Controle de status (*Pendente* / *Concluída*) com barra de progresso em tempo real.
-  - Filtros dinâmicos (*Todas*, *Pendentes*, *Concluídas*).
+- **📋 Quadro Kanban Completo & Flexível:** 
+  - 4 estágios organizados: **A Fazer** (`TODO`), **Em Andamento** (`IN_PROGRESS`), **Em Revisão** (`REVIEW`) e **Concluído** (`DONE`).
+  - Navegação e avanço de estágio rápido com 1 clique (◀ / ▶).
+  - Níveis de prioridade visual: *Baixa*, *Média*, *Alta* e *Crítica*.
+  - Categorização por tipo de demanda: *Infraestrutura*, *Segurança*, *Deploy*, *Correção*, *Rotina* ou *Geral*.
+  - Alternância instantânea entre **Visão Kanban** (Colunas) e **Visão em Lista**.
+  - Campo de busca instantâneo e barra de progresso em tempo real.
 
 - **💻 Cofre de Snippets:**
-  - Armazenamento de blocos de scripts, automações e queries SQL.
+  - Armazenamento de blocos de scripts, comandos bash e queries SQL.
   - Categorização por linguagem (Bash, PowerShell, SQL, C#, Node.js, Texto).
-  - Cópia em 1 clique para a área de transferência.
-  - Edição e exclusão simples.
+  - Botão de cópia rápida para o clipboard com feedback visual.
 
 - **🔐 Autenticação Nativa Integrada:**
-  - Tela de login com design moderno (dark mode nativo).
-  - Proteção por middleware em todas as rotas.
-  - Senha gravada apenas em hash **SHA-256**.
-  - Sessão baseada em cookies seguros assinados com **HMAC-SHA256**.
-  - **Zero dependências externas de autenticação** (utiliza os módulos nativos do Node.js).
+  - Login elegante com design dark mode.
+  - Senha gravada apenas como hash **SHA-256**.
+  - Sessão por cookies assinados com **HMAC-SHA256**.
+  - **Zero dependências externas de autenticação**.
 
 - **🗄️ Armazenamento Autônomo:**
-  - Banco local em JSON (`data.json`) via `fs/promises`.
-  - Sem necessidade de configurar bancos pesados (MySQL, PostgreSQL ou Docker).
+  - Banco local embutido em JSON (`data.json`) via `fs/promises`.
+  - Sem necessidade de bancos externos ou containers pesados.
 
 ---
 
-## ⚡ Instalação Rápida (1 Comando)
+## ⚡ Instalação Rápida
 
-Clone o repositório e execute o script de instalação automatizado:
+### 🐧 No Linux (Debian, Ubuntu, etc.)
+Clone o repositório e execute o instalador automatizado:
 
 ```bash
 git clone https://github.com/Sousatutu/app-curioso.git
@@ -80,25 +71,25 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
-### O que o instalador faz sozinho:
-1. ✅ Verifica e instala automaticamente **Node.js (v20 LTS)**, **npm** e **PM2** se necessário.
-2. ✅ Solicita interativamente o **usuário** e a **senha** que você deseja cadastrar.
-3. ✅ Calcula os hashes criptográficos e cria o `.env.local` protegido.
-4. ✅ Instala as dependências (`npm install`) e compila o projeto otimizado (`npm run build`).
-5. ✅ Inicia o processo no **PM2** e configura inicialização automática no boot do sistema operacional.
+### 🪟 No Windows (PowerShell Nativo)
+Abra o PowerShell na pasta do projeto e execute:
+
+```powershell
+git clone https://github.com/Sousatutu/app-curioso.git
+cd app-curioso
+powershell -ExecutionPolicy Bypass -File .\setup.ps1
+```
+
+> O script perguntará interativamente o **usuário** e a **senha** que você deseja definir, gerando os hashes e preparando o servidor de forma 100% automática.
 
 ---
 
-## 🔑 Trocar Usuário ou Senha
-
-Para redefinir o login ou a senha a qualquer momento, execute:
+## 🔑 Trocar Usuário ou Senha (Linux)
 
 ```bash
 chmod +x reset-password.sh
 ./reset-password.sh
 ```
-
-O script atualizará as credenciais e reiniciará a aplicação instantaneamente.
 
 ---
 
@@ -122,5 +113,5 @@ pm2 stop curioso
 
 ## 🔒 Boas Práticas de Segurança
 
-- Por padrão, o painel fica disponível na porta `3000` (`http://IP_DO_SERVIDOR:3000`).
-- Recomenda-se utilizar um firewall (`ufw`) ou colocar atrás de um proxy reverso (Nginx/Caddy/Cloudflare Tunnel) com terminação SSL/HTTPS se exposto à internet.
+- Por padrão, o painel roda na porta `3000` (`http://SEU_IP:3000`).
+- Recomenda-se utilizar firewall (`ufw` no Linux ou Firewall do Windows) para liberar acesso somente às redes ou IPs desejados.
