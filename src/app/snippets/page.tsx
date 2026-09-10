@@ -160,11 +160,7 @@ export default function SnippetsPage() {
         <div className="flex flex-col">
           {/* Logo / Header */}
           <div className="flex items-center gap-3 mb-10">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 p-0.5 shadow-lg shadow-indigo-600/30 flex items-center justify-center">
-              <div className="w-full h-full bg-slate-950/60 rounded-[14px] flex items-center justify-center text-white font-black text-xl">
-                C
-              </div>
-            </div>
+            <img src="/logo.jpg" alt="Curioso Logo" className="w-11 h-11 rounded-2xl shadow-lg shadow-indigo-600/30 object-cover" />
             <div>
               <h1 className="text-xl font-black text-white tracking-tight leading-none">
                 Curi<span className="text-indigo-400">oso</span>
