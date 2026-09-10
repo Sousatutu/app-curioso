@@ -7,7 +7,7 @@
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 Write-Host "=================================================================" -ForegroundColor Cyan
-Write-Host "   Instalador Automatizado - Curioso (Windows PowerShell)        " -ForegroundColor Cyan
+Write-Host "   Instalador Automatizado - Curioso (Windows)                   " -ForegroundColor Cyan
 Write-Host "=================================================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -114,8 +114,23 @@ Write-Host "=================================================================" -
 Write-Host "   Instalacao concluida com sucesso no Windows!                  " -ForegroundColor Green
 Write-Host "=================================================================" -ForegroundColor Green
 Write-Host ""
-Write-Host "Para iniciar o servidor agora, execute:" -ForegroundColor Yellow
-Write-Host "   npm run start" -ForegroundColor White
-Write-Host ""
-Write-Host "E acesse no navegador: http://localhost:3000" -ForegroundColor Cyan
+
+# 6. Iniciar em segundo plano sem janelas
+$startChoice = Read-Host "Deseja iniciar o Curioso em SEGUNDO PLANO agora de forma silenciosa? (S/n)"
+if ([string]::IsNullOrWhiteSpace($startChoice) -or $startChoice -match "^[sS]") {
+    # Parar processos antigos do node se houver
+    Get-Process node -ErrorAction SilentlyContinue | Where-Object { $_.MainWindowTitle -like "*next*" } | Stop-Process -Force -ErrorAction SilentlyContinue
+
+    # Disparar via WScript silencioso nativo
+    wscript.exe "$PSScriptRoot\iniciar-segundo-plano.vbs"
+    Start-Sleep -Seconds 3
+
+    Write-Host ""
+    Write-Host "[+] Curioso iniciado com sucesso em segundo plano (100% invisivel)!" -ForegroundColor Green
+    Write-Host "    Acesse no seu navegador: http://localhost:3000" -ForegroundColor Cyan
+    Write-Host "    Para encerrar quando quiser, basta dar dois cliques em 'parar.bat'." -ForegroundColor Yellow
+} else {
+    Write-Host ""
+    Write-Host "Para iniciar em segundo plano depois, execute 'iniciar-segundo-plano.vbs' ou 'iniciar.bat'." -ForegroundColor Yellow
+}
 Write-Host ""
