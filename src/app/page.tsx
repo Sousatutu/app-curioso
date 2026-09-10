@@ -153,7 +153,7 @@ export default function Home() {
       <aside className="w-72 bg-slate-900/95 border-r border-slate-800/80 p-6 flex flex-col justify-between backdrop-blur-md flex-shrink-0">
         <div className="flex flex-col">
           <div className="flex items-center gap-3 mb-10">
-            <img src="/logo.jpg" alt="Curioso Logo" className="w-11 h-11 rounded-2xl shadow-lg shadow-indigo-600/30 object-cover" />
+            <img src="/logo.jpg" alt="Curioso Logo" className="w-16 h-16 rounded-2xl shadow-lg shadow-indigo-600/30 object-cover" />
             <div>
               <h1 className="text-xl font-black text-white tracking-tight leading-none">
                 Curi<span className="text-indigo-400">oso</span>

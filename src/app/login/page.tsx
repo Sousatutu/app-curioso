@@ -51,7 +51,7 @@ export default function LoginPage() {
           
           {/* Cabecalho / Logo */}
           <div className="flex flex-col items-center text-center mb-8">
-              <img src="/logo.jpg" alt="Curioso Logo" className="w-16 h-16 rounded-2xl shadow-lg shadow-indigo-500/25 mb-4 object-cover" />
+              <img src="/logo.jpg" alt="Curioso Logo" className="w-24 h-24 rounded-2xl shadow-lg shadow-indigo-500/25 mb-4 object-cover" />
             
             <h1 className="text-3xl font-extrabold tracking-tight text-white">
               Curi<span className="text-indigo-400">oso</span>
