@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -49,7 +49,7 @@ export default function RoutinesPage() {
   };
 
   const deleteRoutine = async (id: string) => {
-    await fetch(\/api/routines?id=\\, { method: 'DELETE' });
+    await fetch('/api/routines?id=' + id, { method: 'DELETE' });
     fetchRoutines();
   };
 
