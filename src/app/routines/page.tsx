@@ -203,7 +203,7 @@ export default function RoutinesPage() {
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
-                      <span className={\	ext-sm font-medium transition-colors \\}>
+                      <span className={routine.completed ? 'text-sm font-medium transition-colors text-slate-500 line-through' : 'text-sm font-medium transition-colors text-slate-200'}>
                         {routine.title}
                       </span>
                     </label>
